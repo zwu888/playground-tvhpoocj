@@ -1,19 +1,29 @@
-# Welcome!
-
-This C++ template lets you get started quickly with a simple one-page playground.
-
+# 
 ```C++ runnable
-#include <iostream>
+#include<iostream>
 
-using namespace std;
 
-int main() 
+const double DELTA = 0.00001;
+double sqrtdemo(double n)
 {
-    cout << "Hello, World!";
-    return 0;
+    double low = 1;
+    double high = n;
+    double middle = 0;
+    while ((high - low) > DELTA)
+    {
+        middle = low + (high - low)/2;
+        double tmp = middle*middle;
+        if ( tmp - n > DELTA) {
+            high = middle;
+        }
+        else {
+            low = middle;
+        }
+    }
+    return middle;
 }
-```
 
-# Advanced usage
-
-If you want a more complex example (external libraries, viewers...), use the [Advanced C++ template](https://tech.io/select-repo/598)
+int main()
+{
+    std::cout << sqrtdemo(2.0) << std::endl;
+}        
